@@ -2,11 +2,17 @@
 
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-3 m-auto my-3 card mx-3 elevation-2 " v-for="b in blogs" :key="b.id">
+    <div class="col-md-3 m-auto my-3 card elevation-2 p-0" v-for="b in blogs" :key="b.id">
         <BlogCard :blog="b" />
     </div>
 </div>
+<button class="btn btn-fab btn-primary fixed-bottom" title="Add Blog" data-bs-toggle="modal" data-bs-target="#blog-form"
+>+</button>
 </div>
+
+<Modal id="blog-form">
+    <BlogForm />
+</Modal>
 
 </template>
 
@@ -17,6 +23,7 @@ import { onMounted } from 'vue'
 import { computed } from "@vue/reactivity";
 import { AppState } from "../AppState";
 import BlogCard from "../components/BlogCard.vue";
+import BlogForm from "../components/BlogForm.vue";
 
 
 export default {
@@ -37,7 +44,7 @@ export default {
             blogs: computed(() => AppState.blogs)
         };
     },
-    components: { BlogCard }
+    components: { BlogCard, BlogForm }
 }
 </script>
 

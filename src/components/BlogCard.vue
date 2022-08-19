@@ -1,16 +1,13 @@
 <template>
 
-<div class="blog-card container-fluid text-center align-items-center text-white text-shadow">
   <router-link :to="{name: 'Blog', params: {blogId: blog.id}}">
+<div @click="setActiveBlog()" class="blog-card container-fluid align-items-center text-white text-shadow selectable">
   <div>
       <h3 class="">{{blog.title}}</h3>
-      <p>By: {{blog.creator.name}}</p>
+      <p class="blog-creator">By: {{blog.creator.name}}</p>
   </div>
-  <div class="">
-    <p>{{blog.createdAt}}</p>
-  </div>
-  </router-link>
 </div>
+  </router-link>
 
 <!-- <div class="blog-creator" v-if="blog.creator">
   <router-link :to="{ name: 'Blog', params: { blogId: blogId} }></router-link>
@@ -21,6 +18,7 @@
 <script>
 import { computed } from "@vue/reactivity";
 import { Blog } from "../models/Blog";
+import { blogsService } from "../services/BlogsService";
 
 
 export default {
@@ -34,6 +32,9 @@ setup(props) {
 
   return {
     cover: computed(() => `url(${props.blog.img})`),
+    setActiveBlog() {
+      blogsService.setActiveBlog()
+    }
   };
 
   }
@@ -60,7 +61,7 @@ setup(props) {
 
 .blog-creator {
   position: absolute;
-  bottom: 1rem;
+  bottom: 0rem;
   right: 1rem
 }
 
