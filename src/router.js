@@ -17,6 +17,16 @@ const routes = [
     component: loadPage('AboutPage')
   },
   {
+    path: '/profile/:profileId',
+    name: 'Profile',
+    component: loadPage('BlogPage')
+  },
+  {
+    path: '/blog/:blogId',
+    name: 'Blog',
+    component: loadPage('BlogPage')
+  },
+  {
     path: '/account',
     name: 'Account',
     component: loadPage('AccountPage'),
